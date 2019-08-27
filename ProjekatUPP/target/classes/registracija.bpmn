@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0rq9z01" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
+  <bpmn:process id="mojaRegistracija" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1y63sx9" name="Registracija korisnika">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="upp.delegate.LoggerDelegate" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1nsiblc</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="createAndSave" name="Kreiranje i cuvanje korisnika u bazi" camunda:class="upp.delegate.RegistrationDelegate">
+      <bpmn:incoming>SequenceFlow_0h66iqp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0iuac8w</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1nsiblc" sourceRef="StartEvent_1y63sx9" targetRef="formRegistration" />
+    <bpmn:sequenceFlow id="SequenceFlow_0iuac8w" sourceRef="createAndSave" targetRef="EndEvent_0lyqj1l" />
+    <bpmn:endEvent id="EndEvent_0lyqj1l" name="Uspjesna registracija">
+      <bpmn:incoming>SequenceFlow_0iuac8w</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="formRegistration" name="Unos podataka za registraciju" camunda:formKey="formaZaRegistraciju">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="ime" label="Ime" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="prezime" label="Prezime" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="grad" label="Grad" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="email" label="Email" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="password" label="Lozinka" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="drzava" label="Drzava" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1nsiblc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0h66iqp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0h66iqp" sourceRef="formRegistration" targetRef="createAndSave" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="mojaRegistracija">
+      <bpmndi:BPMNShape id="StartEvent_1y63sx9_di" bpmnElement="StartEvent_1y63sx9">
+        <dc:Bounds x="-59" y="-146" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-66" y="-103" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1ajyind_di" bpmnElement="createAndSave">
+        <dc:Bounds x="188" y="-168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1nsiblc_di" bpmnElement="SequenceFlow_1nsiblc">
+        <di:waypoint x="-23" y="-128" />
+        <di:waypoint x="36" y="-128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0iuac8w_di" bpmnElement="SequenceFlow_0iuac8w">
+        <di:waypoint x="288" y="-128" />
+        <di:waypoint x="429" y="-128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0lyqj1l_di" bpmnElement="EndEvent_0lyqj1l">
+        <dc:Bounds x="429" y="-146" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="420" y="-103" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0ppd2ls_di" bpmnElement="formRegistration">
+        <dc:Bounds x="36" y="-168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0h66iqp_di" bpmnElement="SequenceFlow_0h66iqp">
+        <di:waypoint x="136" y="-128" />
+        <di:waypoint x="188" y="-128" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Rad</title>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/rad.js"></script>
+		<script type="text/javascript" src="js/home.js"></script>
+		<link rel="stylesheet" href="css/index.css">
+		
+	</head>
+	
+	<body>
+	<!-- toolbar -->
+<ul>  
+	<li class="left" id="login_tb" ><a href="home.html">Home</a></li>
+	
+</ul>
+
+		
+        
+        <h1>Dodaj rad</h1>
+		
+		<div>	
+				<br>
+				    <select id = "naucnaOblast" required>
+						<option value="">Izaberi naucnu oblast</option>
+					</select>
+					<br></br>
+		</div>	
+		
+		<!--
+		<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+		    <input type="text" name="naslov" placeholder="title"/><br/><br/>
+		    <input type="text" name="kljucniPojmovi" placeholder="keywords"/><br/><br/>
+		    <input type="text" name="apstrakt" placeholder="abstract"/><br/><br/>
+		    <input type="file" name="files"/><br/><br/>
+		   
+		</form>
+		  -->
+		<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+	  		<div id = "uFormi">
+	  		
+	  		</div>
+		    <input type="submit" value="Submit" id="btnSubmit"/>
+		</form>
+		
+		
+					
+	</body>
+</html>
